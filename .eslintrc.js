@@ -1,25 +1,37 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    es2021: true
   },
-  extends: ["plugin:react/recommended", "airbnb", "prettier", "eslint:recommended"],
-  overrides: [],
+  extends: [
+    "plugin:react/recommended",
+    "prettier",
+    "airbnb",
+    "airbnb-typescript",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended"
+  ],
+  overrides: [
+  ],
   parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
+    ecmaVersion: 'latest',
+    project: ["./tsconfig.json"],
+    sourceType: 'module'
   },
-  plugins: ["prettier", "react", "react-hooks", "jsx-a11y"],
+  plugins: ["react", "react-hooks", "prettier"],
   rules: {
+    "semi": ["warn", "always"],
+    "quotes": ["warn", "double", { "avoidEscape": true }],
     "react/react-in-jsx-scope": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/state-in-constructor": 0,
-    "react/jsx-filename-extension": [1, { extensions: [".js", ".jsx"] }],
-    "react/prop-types": 0,
-    "no-unused-vars": "warn",
-    "jsx-a11y/click-events-have-key-events": 0,
+    "no-unused-vars": "off",
+    "no-console": "off",
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "@typescript-eslint/no-explicit-any": "warn",
     "react/function-component-definition": [2, { namedComponents: "arrow-function" }],
+    "no-use-before-define": "off",
     "prettier/prettier": [
       "error",
       {
@@ -32,4 +44,4 @@ module.exports = {
       },
     ],
   },
-};
+}
