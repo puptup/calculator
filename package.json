@@ -45,7 +45,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "start": "webpack-dev-server --mode development --open --hot",
+    "start": "webpack-dev-server --mode development --hot --port 8080",
     "build": "webpack --mode production"
   },
   "author": "",
