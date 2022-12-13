@@ -32,6 +32,12 @@ module.exports = {
     "@typescript-eslint/no-explicit-any": "warn",
     "react/function-component-definition": [2, { namedComponents: "arrow-function" }],
     "no-use-before-define": "off",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "lines-between-class-members": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "max-classes-per-file": "off",
+    "react/no-array-index-key": 'off',
     "prettier/prettier": [
       "error",
       {
