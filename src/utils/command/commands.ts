@@ -1,4 +1,4 @@
-import { CALCULATION_ERROR, Operation, STANDART_BRACKETS_ACTION } from "../../constants/index";
+import { Operation, CALCULATION_ERROR, STANDART_BRACKETS_ACTION } from "../../constants/index";
 import { CalculatorState } from "../../types";
 /* eslint-disable class-methods-use-this */
 import { calculateExpression } from "../calculator/calculator";
@@ -92,16 +92,20 @@ export class ChangeSign extends Command {
   }
 
   canExecute(): boolean {
-    const { value, formula } = this.state;
-    return !isNumber(value) && !hasError(formula);
+    const { value } = this.state;
+    return isNumber(value);
   }
 }
 
 export class AddAction extends Command {
   execute(payload: Operation): void {
     const { formula, value } = this.state;
-    if (isNumber(this.state.value)) {
-      this.state.formula = [...formula, value];
+    if (isNumber(value)) {
+      if (Number(value) > 0) {
+        this.state.formula = [...formula, value];
+      } else {
+        this.state.formula = [...formula, Operation.LeftBracket, value, Operation.RigthBracket];
+      }
     }
 
     this.state.value = payload;
@@ -116,7 +120,18 @@ export class SetLeftBracket extends Command {
   execute(payload: Operation): void {
     const { formula, value } = this.state;
     if (isNumber(value)) {
-      this.state.formula = [...formula, value, STANDART_BRACKETS_ACTION, payload];
+      if (Number(value) > 0) {
+        this.state.formula = [...formula, value, STANDART_BRACKETS_ACTION, payload];
+      } else {
+        this.state.formula = [
+          ...formula,
+          Operation.LeftBracket,
+          value,
+          Operation.RigthBracket,
+          STANDART_BRACKETS_ACTION,
+          payload,
+        ];
+      }
     } else {
       this.state.formula = [...formula, value, payload];
     }
