@@ -21,6 +21,6 @@ export const STANDART_BRACKETS_ACTION = Operation.Multiply;
 export const calculatorTable = [
   [1, 2, 3, Operation.Clear, Operation.ClearEntry, Operation.ChangeSign, Operation.Modulo],
   [4, 5, 6, Operation.Multiply, Operation.Divide],
-  [7, 8, 9, Operation.Add, Operation.Subtract, Operation.Modulo],
+  [7, 8, 9, Operation.Add, Operation.Subtract],
   [Operation.Dot, 0, Operation.LeftBracket, Operation.RigthBracket, Operation.Equal],
 ];

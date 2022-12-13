@@ -1,13 +1,22 @@
 import { CALCULATION_ERROR, Operation } from "../../../constants";
 import { calculateExpression } from "../../calculator/calculator";
-import { hasError, isNumber, validateCalculationString } from "../../calculator/validator";
+import {
+  getNumberInBrackets,
+  hasError,
+  isNumber,
+  validateCalculationString,
+} from "../../calculator/validator";
 import { Command } from "./Command";
 
 export default class GetValue extends Command {
   execute(): void {
     let formula: string[];
     if (isNumber(this.state.value)) {
-      formula = [...this.state.formula, this.state.value];
+      if (Number(this.state.value) > 0) {
+        formula = [...this.state.formula, this.state.value];
+      } else {
+        formula = [...this.state.formula, ...getNumberInBrackets(this.state.value)];
+      }
     } else {
       formula = [...this.state.formula];
     }
@@ -22,9 +31,15 @@ export default class GetValue extends Command {
         this.state.value = CALCULATION_ERROR;
       }
     }
+    const jsonNewFormula = JSON.stringify(validatedFormula);
+    const jsonOldFormula = JSON.stringify(this.state.history.slice(-1)[0]?.formula);
+    if (jsonNewFormula === jsonOldFormula) {
+      return;
+    }
+    console.log(jsonNewFormula, jsonOldFormula);
     this.state.history = [
       ...this.state.history,
-      { formula: validatedFormula.join(""), value: this.state.value },
+      { formula: validatedFormula, value: this.state.value },
     ];
     this.state.formula = [];
   }

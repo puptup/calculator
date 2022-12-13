@@ -4,7 +4,7 @@ import React, { FC } from "react";
 interface HistoryProps {
   history: {
     value: string;
-    formula: string;
+    formula: string[];
   }[];
   clearHistory: () => void;
 }

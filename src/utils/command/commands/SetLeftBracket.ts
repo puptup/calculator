@@ -1,5 +1,5 @@
 import { Operation, STANDART_BRACKETS_ACTION } from "../../../constants";
-import { isNumber } from "../../calculator/validator";
+import { getNumberInBrackets, isNumber } from "../../calculator/validator";
 import { Command } from "./Command";
 
 export default class SetLeftBracket extends Command {
@@ -11,9 +11,7 @@ export default class SetLeftBracket extends Command {
       } else {
         this.state.formula = [
           ...formula,
-          Operation.LeftBracket,
-          value,
-          Operation.RigthBracket,
+          ...getNumberInBrackets(value),
           STANDART_BRACKETS_ACTION,
           payload,
         ];
