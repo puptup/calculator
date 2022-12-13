@@ -106,10 +106,11 @@ export class AddAction extends Command {
 
     this.state.value = payload;
   }
-}
 
-// LeftBracket = "(",
-// RigthBracket = ")",
+  canExecute(): boolean {
+    return !!this.state.value;
+  }
+}
 
 export class SetLeftBracket extends Command {
   execute(payload: Operation): void {
