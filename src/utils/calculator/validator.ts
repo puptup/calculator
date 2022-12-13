@@ -11,6 +11,11 @@ export const validateCalculationString = (formula: string[]): string[] => {
   return filteredFormula;
 };
 
+export const getNumberInBrackets = (value: string): string[] => [
+  Operation.LeftBracket,
+  value,
+  Operation.RigthBracket,
+];
 export const hasError = (formula: string[]): boolean => formula.includes(CALCULATION_ERROR);
 export const isNumber = (value: string): boolean =>
   !Number.isNaN(value) && !Number.isNaN(parseFloat(value));

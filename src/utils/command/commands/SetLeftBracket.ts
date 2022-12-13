@@ -19,7 +19,7 @@ export default class SetLeftBracket extends Command {
         ];
       }
     } else if (formula.slice(-1)[0] === Operation.RigthBracket) {
-      this.state.formula = [...formula, value, payload];
+      this.state.formula = [...formula, value, STANDART_BRACKETS_ACTION, payload];
     } else {
       this.state.formula = [...formula, value, payload];
     }

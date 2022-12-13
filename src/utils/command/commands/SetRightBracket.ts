@@ -1,11 +1,15 @@
 import { Operation } from "../../../constants";
-import { isNumber } from "../../calculator/validator";
+import { getNumberInBrackets, isNumber } from "../../calculator/validator";
 import { Command } from "./Command";
 
 export default class SetRigthBracket extends Command {
   execute(payload: Operation): void {
     const { formula, value } = this.state;
-    this.state.formula = [...formula, value, payload];
+    if (Number(value) < 0) {
+      this.state.formula = [...formula, ...getNumberInBrackets(value), payload];
+    } else {
+      this.state.formula = [...formula, value, payload];
+    }
     this.state.value = "";
   }
 
