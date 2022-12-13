@@ -17,52 +17,50 @@ const operatorToFunction = {
 };
 
 const operatorPriority = [
-  [Operation.Modulo, Operation.Divide, Operation.Multiply],
-  [Operation.Add, Operation.Subtract],
+  Operation.Modulo,
+  Operation.Divide,
+  Operation.Multiply,
+  Operation.Add,
+  Operation.Subtract,
 ];
 
 type OperatorKey = keyof typeof operatorToFunction;
 
-const searchLastDigit = /-?\d*\.?\d*$/g;
-const searchFirstDigit = /^-?\d*\.?\d*/g;
-
-const calculateAction = (expression: string): string => {
-  if (!expression) return "0";
-  for (const priorityLevel of operatorPriority) {
-    for (const operator of priorityLevel) {
-      const splittedExpression = expression.split(operator);
-      if (splittedExpression.length > 1) {
-        expression = splittedExpression.reduce((acc, element) => {
-          const numA = acc.match(searchLastDigit)![0];
-          const numB = element.match(searchFirstDigit)![0];
-
-          const operationResult = operatorToFunction[operator as OperatorKey](+numA, +numB);
-          if (!Number.isFinite(operationResult) && operator === Operation.Divide) {
-            throw new Error("Devision by zero");
-          }
-          return acc.slice(0, -numA.length) + operationResult + element.slice(numB.length);
-        });
+const calculateAction = (expression: string[]): string => {
+  if (expression.length === 1) return expression[0];
+  for (const operator of operatorPriority) {
+    while (expression.includes(operator)) {
+      const operatorIndex = expression.findIndex((elelement) => elelement === operator);
+      const numA = expression[operatorIndex - 1];
+      const numB = expression[operatorIndex + 1];
+      const operationResult = operatorToFunction[operator as OperatorKey](+numA, +numB);
+      if (!Number.isFinite(operationResult) && operator === Operation.Divide) {
+        throw new Error("Devision by zero");
       }
+      expression.splice(operatorIndex - 1, 3, String(operationResult));
     }
   }
-  return expression;
+  return expression[0];
 };
 
-export const calculateExpression = (formula: string) => {
-  let clearFormula = formula.split(" ").join("");
-  const regExp = /\(([^()]*)\)/g;
-  let matches = clearFormula.match(regExp);
-  while (matches?.length) {
-    for (const expression of matches) {
-      const index = clearFormula.indexOf(expression);
-      clearFormula =
-        clearFormula.slice(0, index) +
-        calculateAction(expression.slice(1, -1)) +
-        clearFormula.slice(index + expression.length);
+export const calculateExpression = (formula: string[]) => {
+  formula = [...formula];
+  while (formula.includes(Operation.RigthBracket)) {
+    let indexOfRightBracket = -1;
+    let indexOfLeftBracket = -1;
+    for (let i = 0; i < formula.length; i += 1) {
+      if (formula[i] === Operation.LeftBracket) {
+        indexOfLeftBracket = i;
+      } else if (formula[i] === Operation.RigthBracket) {
+        indexOfRightBracket = i;
+        break;
+      }
     }
-    matches = clearFormula.match(regExp);
+    const action = formula.splice(indexOfLeftBracket, indexOfRightBracket - indexOfLeftBracket + 1);
+    const actionResult = calculateAction(action.slice(1, -1));
+    formula.splice(indexOfLeftBracket, 0, actionResult);
   }
-  return calculateAction(clearFormula);
+  return calculateAction(formula);
 };
 
 // const testCalculator = () => {

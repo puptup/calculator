@@ -55,7 +55,7 @@ export class SetValue extends Command {
 
 export class GetValue extends Command {
   execute(): void {
-    const formula = this.state.formula.join("") + this.state.value;
+    const formula = [...this.state.formula, this.state.value];
     const validatedFormula = validateCalculationString(formula);
     if (hasError(validatedFormula)) {
       this.state.value = CALCULATION_ERROR;
@@ -69,7 +69,7 @@ export class GetValue extends Command {
     }
     this.state.history = [
       ...this.state.history,
-      { formula: validatedFormula, value: this.state.value },
+      { formula: validatedFormula.join(""), value: this.state.value },
     ];
     this.state.formula = [];
   }
@@ -92,8 +92,8 @@ export class ChangeSign extends Command {
   }
 
   canExecute(): boolean {
-    const formula = this.state.formula.join("");
-    return !!this.state.value && !hasError(formula);
+    const { value, formula } = this.state;
+    return !isNumber(value) && !hasError(formula);
   }
 }
 
