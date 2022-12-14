@@ -1,9 +1,17 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import { Operation } from "../../../../constants";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { calculatorAction } from "../../../../store/reducers/calculator";
-import { Button, HistoryHead, HistoryTitle, HistoryWrapper, List } from "../../styles/history";
+import { calculatorAction, setValue } from "../../../../store/reducers/calculator";
+import {
+  Button,
+  HistoryHead,
+  HistoryTitle,
+  HistoryWrapper,
+  List,
+  ListElement,
+} from "../../styles/history";
 
 const History = () => {
   const { history } = useAppSelector((state) => state.calculator);
@@ -11,6 +19,10 @@ const History = () => {
 
   const clearHistory = () => {
     dispatch(calculatorAction(Operation.ClearHistory));
+  };
+
+  const setValueToScreen = (value: string) => () => {
+    dispatch(setValue(value));
   };
 
   return (
@@ -24,9 +36,9 @@ const History = () => {
       {history.length ? (
         <List>
           {history.map(({ value, formula }, index) => (
-            <li key={index}>
+            <ListElement key={index} onClick={setValueToScreen(value)}>
               {index + 1}. {formula} = {value}
-            </li>
+            </ListElement>
           ))}
         </List>
       ) : (

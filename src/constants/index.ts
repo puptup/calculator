@@ -1,5 +1,3 @@
-export const CALCULATION_ERROR = "Err";
-
 export enum Operation {
   Clear = "C",
   Multiply = "*",
@@ -18,6 +16,7 @@ export enum Operation {
 
 export const STANDART_BRACKETS_ACTION = Operation.Multiply;
 export const DEFAULT_CALCULATOR_VALUE = "0";
+export const CALCULATION_ERROR = "Err";
 
 export const largeKeys = [Operation.Clear, Operation.Equal, Operation.Modulo];
 

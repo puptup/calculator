@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const DisplayWrapper = styled.div`
   padding: 30px 40px 20px 0;
-
   display: flex;
   flex-direction: column;
   border-radius: 50px 50px 0 0;
@@ -17,11 +16,11 @@ export const FormulaText = styled.div`
   height: 14px;
   overflow: hidden;
   position: relative;
-  color: #717990;
+  color: ${({ theme }) => theme.palette.text.secondary};
 `;
 
 export const ValueText = styled.div`
-  color: white;
+  color: ${({ theme }) => theme.palette.text.primary};
   font-size: 24px;
   height: 24px;
 `;

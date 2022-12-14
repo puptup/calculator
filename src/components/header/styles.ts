@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 export const HeaderWrapper = styled.header`
   height: 50px;
-  background: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -13,7 +12,7 @@ export const HeaderWrapper = styled.header`
 
 export const Link = styled(NavLink)`
   text-decoration: none;
-  color: black;
+  color: ${({ theme }) => theme.palette.text.primary};
   font-size: 20px;
   &.active {
     color: orange;

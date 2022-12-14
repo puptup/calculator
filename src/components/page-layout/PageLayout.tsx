@@ -1,16 +1,22 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import { ThemeProvider } from "styled-components";
+import { useAppSelector } from "../../hooks";
+import { themeByType } from "../../theme";
 
 import Header from "../header";
 import { MainWrapper } from "./styles";
 
 const PageLayout = () => {
-  return (
-    <MainWrapper>
-      <Header />
+  const theme = useAppSelector((state) => state.theme.actual);
 
-      <Outlet />
-    </MainWrapper>
+  return (
+    <ThemeProvider theme={themeByType[theme]}>
+      <MainWrapper>
+        <Header />
+        <Outlet />
+      </MainWrapper>
+    </ThemeProvider>
   );
 };
 

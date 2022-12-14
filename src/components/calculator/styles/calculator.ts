@@ -5,7 +5,7 @@ export const CalculatorWrapper = styled.div`
   margin-left: calc(50% - 200px);
   position: relative;
   width: fit-content;
-  background-color: #21242d;
+  background-color: ${({ theme }) => theme.palette.background.primary};
   border-radius: 50px;
   box-shadow: 19px 20px 21px 0px rgb(12 14 16 / 26%);
   display: flex;

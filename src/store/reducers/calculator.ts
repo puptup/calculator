@@ -15,11 +15,15 @@ const calculatorSlice = createSlice({
   initialState,
   reducers: {
     calculatorAction(state, action: PayloadAction<Operation | number>) {
+      console.log("tests");
       CalculatorInvoker.executeCommandBySign(state, action.payload);
+    },
+    setValue(state, action: PayloadAction<string>) {
+      state.value = action.payload;
     },
   },
 });
 
-export const { calculatorAction } = calculatorSlice.actions;
+export const { calculatorAction, setValue } = calculatorSlice.actions;
 
 export default calculatorSlice.reducer;

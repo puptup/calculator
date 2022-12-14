@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const ControlPanelWrapper = styled.div`
-  width: fit-content;
-  margin: 0 auto;
-  color: white;
+  color: ${({ theme }) => theme.palette.text.primary};
   margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
 `;
 
 export const IconWrapper = styled.div<{ higthLite: boolean }>`
-  color: ${({ higthLite }) => (higthLite ? "white" : "gray")};
+  opacity: ${({ higthLite }) => (higthLite ? "1" : "0.5")};
   cursor: pointer;
 `;

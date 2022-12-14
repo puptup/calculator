@@ -1,3 +1,3 @@
-import CalculatorCC from "./CalculatorCC";
+import CalculatorCC from "./CalculatorСC";
 
 export default CalculatorCC;
