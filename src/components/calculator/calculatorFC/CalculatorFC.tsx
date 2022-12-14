@@ -1,39 +1,27 @@
-import React from "react";
-import { calculatorTable, Operation } from "../../../constants";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { calculatorAction } from "../../../store/reducers/calculator";
+import React, { useState } from "react";
+import { CalculatorWrapper, MainScreen } from "../styles/calculator";
+import ControlPanel from "./control-panel";
+import Display from "./display";
 
 import History from "./history";
+import KeyPad from "./keypad";
 
 const CalculatorFC = () => {
-  const { value, formula, history } = useAppSelector((state) => state.calculator);
-  const dispatch = useAppDispatch();
+  const [showHistory, setShowHistory] = useState(false);
 
-  const handleAction = (sign: Operation | number) => () => {
-    dispatch(calculatorAction(sign));
+  const toggleShowHistory = () => {
+    setShowHistory((prev) => !prev);
   };
 
   return (
-    <div>
-      <div>{`formula ${formula.join("")}`}</div>
-      <div>{`value ${value}`}</div>
-
-      {calculatorTable.map((row, index) => (
-        <div key={index}>
-          {row.map((element) => (
-            <button
-              style={{ minWidth: 50, height: 50 }}
-              key={element}
-              type="button"
-              onClick={handleAction(element)}
-            >
-              {element}
-            </button>
-          ))}
-        </div>
-      ))}
-      <History history={history} clearHistory={handleAction(Operation.ClearHistory)} />
-    </div>
+    <CalculatorWrapper>
+      <MainScreen>
+        <ControlPanel toggleShowHistory={toggleShowHistory} showHistory={showHistory} />
+        <Display />
+        <KeyPad />
+      </MainScreen>
+      {showHistory && <History />}
+    </CalculatorWrapper>
   );
 };
 

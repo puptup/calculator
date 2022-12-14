@@ -6,7 +6,7 @@ export default class SetLeftBracket extends Command {
   execute(payload: Operation): void {
     const { formula, value } = this.state;
     if (isNumber(value)) {
-      if (Number(value) > 0) {
+      if (Number(value) >= 0) {
         this.state.formula = [...formula, value, STANDART_BRACKETS_ACTION, payload];
       } else {
         this.state.formula = [

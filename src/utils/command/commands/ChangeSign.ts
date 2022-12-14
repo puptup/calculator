@@ -1,3 +1,4 @@
+import { DEFAULT_CALCULATOR_VALUE } from "../../../constants";
 import { isNumber } from "../../calculator/validator";
 import { Command } from "./Command";
 
@@ -9,6 +10,6 @@ export default class ChangeSign extends Command {
 
   canExecute(): boolean {
     const { value } = this.state;
-    return isNumber(value);
+    return isNumber(value) && value !== DEFAULT_CALCULATOR_VALUE;
   }
 }

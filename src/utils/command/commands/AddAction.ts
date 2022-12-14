@@ -6,7 +6,7 @@ export default class AddAction extends Command {
   execute(payload: Operation): void {
     const { formula, value } = this.state;
     if (isNumber(value)) {
-      if (Number(value) > 0) {
+      if (Number(value) >= 0) {
         this.state.formula = [...formula, value];
       } else {
         this.state.formula = [...formula, ...getNumberInBrackets(value)];

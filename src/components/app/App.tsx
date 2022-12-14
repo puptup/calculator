@@ -4,12 +4,17 @@ import { RouterProvider } from "react-router-dom";
 
 import store from "../../store";
 import router from "../../routes";
+import ErrorBoundry from "../error-boundry/ErrorBoundry";
+import { GlobalStyle } from "../../theme";
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <ErrorBoundry>
+      <GlobalStyle />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </ErrorBoundry>
   );
 };
 

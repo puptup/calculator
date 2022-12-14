@@ -1,26 +1,38 @@
 /* eslint-disable react/no-array-index-key */
-import React, { FC } from "react";
+import React from "react";
+import { Operation } from "../../../../constants";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { calculatorAction } from "../../../../store/reducers/calculator";
+import { Button, HistoryHead, HistoryTitle, HistoryWrapper, List } from "../../styles/history";
 
-interface HistoryProps {
-  history: {
-    value: string;
-    formula: string[];
-  }[];
-  clearHistory: () => void;
-}
+const History = () => {
+  const { history } = useAppSelector((state) => state.calculator);
+  const dispatch = useAppDispatch();
 
-const History: FC<HistoryProps> = ({ history, clearHistory }) => {
+  const clearHistory = () => {
+    dispatch(calculatorAction(Operation.ClearHistory));
+  };
+
   return (
-    <div>
-      <button type="button" onClick={clearHistory}>
-        Clear history
-      </button>
-      {history.map(({ value, formula }, index) => (
-        <div key={index}>
-          {index + 1} {formula} = {value}
-        </div>
-      ))}
-    </div>
+    <HistoryWrapper>
+      <HistoryHead>
+        <HistoryTitle>History</HistoryTitle>
+        <Button size={1.5} type="button" onClick={clearHistory}>
+          Clear all
+        </Button>
+      </HistoryHead>
+      {history.length ? (
+        <List>
+          {history.map(({ value, formula }, index) => (
+            <li key={index}>
+              {index + 1}. {formula} = {value}
+            </li>
+          ))}
+        </List>
+      ) : (
+        <div>History is empty</div>
+      )}
+    </HistoryWrapper>
   );
 };
 

@@ -1,4 +1,4 @@
-import { CALCULATION_ERROR, Operation } from "../../../constants";
+import { CALCULATION_ERROR, DEFAULT_CALCULATOR_VALUE, Operation } from "../../../constants";
 import { calculateExpression } from "../../calculator/calculator";
 import {
   getNumberInBrackets,
@@ -12,7 +12,7 @@ export default class GetValue extends Command {
   execute(): void {
     let formula: string[];
     if (isNumber(this.state.value)) {
-      if (Number(this.state.value) > 0) {
+      if (Number(this.state.value) >= 0) {
         formula = [...this.state.formula, this.state.value];
       } else {
         formula = [...this.state.formula, ...getNumberInBrackets(this.state.value)];
@@ -33,10 +33,11 @@ export default class GetValue extends Command {
     }
     const jsonNewFormula = JSON.stringify(validatedFormula);
     const jsonOldFormula = JSON.stringify(this.state.history.slice(-1)[0]?.formula);
+
     if (jsonNewFormula === jsonOldFormula) {
       return;
     }
-    console.log(jsonNewFormula, jsonOldFormula);
+
     this.state.history = [
       ...this.state.history,
       { formula: validatedFormula, value: this.state.value },
@@ -45,6 +46,10 @@ export default class GetValue extends Command {
   }
 
   canExecute(): boolean {
-    return !!this.state.formula && this.state.formula.slice(-1)[0] !== Operation.LeftBracket;
+    return (
+      this.state.formula.length > 0 &&
+      this.state.formula.slice(-1)[0] !== Operation.LeftBracket &&
+      this.state.value !== DEFAULT_CALCULATOR_VALUE
+    );
   }
 }

@@ -1,15 +1,16 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 
-import ErrorBoundry from "../error-boundry/ErrorBoundry";
 import Header from "../header";
+import { MainWrapper } from "./styles";
 
 const PageLayout = () => {
   return (
-    <ErrorBoundry>
+    <MainWrapper>
       <Header />
+
       <Outlet />
-    </ErrorBoundry>
+    </MainWrapper>
   );
 };
 

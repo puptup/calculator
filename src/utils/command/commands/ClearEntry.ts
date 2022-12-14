@@ -1,4 +1,4 @@
-import { Operation } from "../../../constants";
+import { DEFAULT_CALCULATOR_VALUE, Operation } from "../../../constants";
 import { Command } from "./Command";
 
 export default class ClearEntry extends Command {
@@ -11,10 +11,19 @@ export default class ClearEntry extends Command {
     if (formula.length > 0 && !this.state.value) {
       const newValue = this.state.formula.pop();
       if (newValue !== Operation.LeftBracket && newValue !== Operation.RigthBracket) {
-        this.state.value = newValue || "";
+        this.state.value = newValue || DEFAULT_CALCULATOR_VALUE;
       } else {
-        this.state.value = this.state.formula.pop() || "";
+        this.state.value = this.state.formula.pop() || DEFAULT_CALCULATOR_VALUE;
       }
+      return;
     }
+
+    if (!this.state.value) {
+      this.state.value = DEFAULT_CALCULATOR_VALUE;
+    }
+  }
+
+  canExecute(): boolean {
+    return this.state.value !== DEFAULT_CALCULATOR_VALUE;
   }
 }
