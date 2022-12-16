@@ -2,6 +2,8 @@
 /* eslint-disable no-restricted-syntax */
 import { Operation } from "@constants";
 
+import { toFixedAndTrim } from "./validator";
+
 const Add = (a: number, b: number) => a + b;
 const Sub = (a: number, b: number) => a - b;
 const Mul = (a: number, b: number) => a * b;
@@ -27,7 +29,7 @@ const operatorPriority = [
 type OperatorKey = keyof typeof operatorToFunction;
 
 const calculateAction = (expression: string[]): string => {
-  if (expression.length === 1) return expression[0];
+  if (expression.length === 1) return toFixedAndTrim(Number(expression[0]));
   for (const operator of operatorPriority) {
     while (expression.includes(operator)) {
       const operatorIndex = expression.findIndex((elelement) => elelement === operator);
@@ -37,7 +39,7 @@ const calculateAction = (expression: string[]): string => {
       if (!Number.isFinite(operationResult) && operator === Operation.Divide) {
         throw new Error("Devision by zero");
       }
-      expression.splice(operatorIndex - 1, 3, String(operationResult));
+      expression.splice(operatorIndex - 1, 3, toFixedAndTrim(operationResult));
     }
   }
   return expression[0];

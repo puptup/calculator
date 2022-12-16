@@ -19,3 +19,10 @@ export const getNumberInBrackets = (value: string): string[] => [
 export const hasError = (formula: string[]): boolean => formula.includes(CALCULATION_ERROR);
 export const isNumber = (value: string): boolean =>
   !Number.isNaN(value) && !Number.isNaN(parseFloat(value));
+
+export const toFixedAndTrim = (number: number): string => {
+  if (number % 1 !== 0) {
+    return number.toFixed(3);
+  }
+  return String(number);
+};
