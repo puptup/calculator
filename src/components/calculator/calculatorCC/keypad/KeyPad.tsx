@@ -21,11 +21,12 @@ class KeyPad extends React.PureComponent<PropsFromRedux> {
 
   render() {
     return (
-      <KeyPadWrapper>
+      <KeyPadWrapper data-test="keypad">
         {calculatorTable.map((row, index) => (
           <KeysRow key={index}>
             {row.map((element) => (
               <Button
+                data-test={element}
                 size={largeKeys.includes(element as Operation) ? 2 : 1}
                 key={element}
                 onClick={() => this.handleAction(element)}

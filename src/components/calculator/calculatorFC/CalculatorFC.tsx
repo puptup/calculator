@@ -14,7 +14,7 @@ const CalculatorFC = () => {
   };
 
   return (
-    <CalculatorWrapper>
+    <CalculatorWrapper data-test="calculator">
       <MainScreen>
         <ControlPanel toggleShowHistory={toggleShowHistory} showHistory={showHistory} />
         <Display />

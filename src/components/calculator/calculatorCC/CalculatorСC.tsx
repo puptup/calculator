@@ -21,7 +21,7 @@ class CalculatorCC extends React.Component<{}, CalculatorCCState> {
   render() {
     const { showHistory } = this.state;
     return (
-      <CalculatorWrapper>
+      <CalculatorWrapper data-test="calculator">
         <MainScreen>
           <ControlPanel toggleShowHistory={this.toggleShowHistory} showHistory={showHistory} />
           <Display />

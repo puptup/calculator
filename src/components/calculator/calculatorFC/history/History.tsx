@@ -26,18 +26,18 @@ const History = () => {
   };
 
   return (
-    <HistoryWrapper>
+    <HistoryWrapper data-test="history">
       <HistoryHead>
         <HistoryTitle>History</HistoryTitle>
-        <Button size={1.5} type="button" onClick={clearHistory}>
+        <Button data-test="clear_history" size={1.5} type="button" onClick={clearHistory}>
           Clear all
         </Button>
       </HistoryHead>
       {history.length ? (
-        <List>
+        <List data-test="history_list">
           {history.map(({ value, formula }, index) => (
             <ListElement key={index} onClick={setValueToScreen(value)}>
-              {index + 1}. {formula} = {value}
+              {index + 1}. {formula.join("")} = {value}
             </ListElement>
           ))}
         </List>

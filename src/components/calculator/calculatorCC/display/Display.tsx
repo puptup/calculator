@@ -17,8 +17,8 @@ class Display extends React.PureComponent<PropsFromRedux> {
     const { formula, value } = this.props;
     return (
       <DisplayWrapper>
-        <FormulaText>{formula.join("")}</FormulaText>
-        <ValueText>{value}</ValueText>
+        <FormulaText data-test="formula">{formula.join("")}</FormulaText>
+        <ValueText data-test="value">{value}</ValueText>
       </DisplayWrapper>
     );
   }

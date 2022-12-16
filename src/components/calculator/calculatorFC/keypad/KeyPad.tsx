@@ -12,11 +12,12 @@ const KeyPad = () => {
   };
 
   return (
-    <KeyPadWrapper>
+    <KeyPadWrapper data-test="keypad">
       {calculatorTable.map((row, index) => (
         <KeysRow key={index}>
           {row.map((element) => (
             <Button
+              data-test={element}
               size={largeKeys.includes(element as Operation) ? 2 : 1}
               key={element}
               onClick={handleAction(element)}

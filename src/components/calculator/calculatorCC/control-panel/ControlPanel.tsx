@@ -31,15 +31,21 @@ class ControlPanel extends React.PureComponent<Props> {
     }
   };
   render() {
-    const { showHistory, toggleShowHistory } = this.props;
+    const { theme, showHistory, toggleShowHistory } = this.props;
     return (
       <ControlPanelWrapper>
-        <IconWrapper higthLite={showHistory} onClick={toggleShowHistory}>
+        <IconWrapper data-test="show_history" higthLite={showHistory} onClick={toggleShowHistory}>
           <i className="material-icons">history</i>
         </IconWrapper>
-        <IconWrapper higthLite onClick={this.switchTheme}>
-          <i className="material-icons">dark_mode</i>
-        </IconWrapper>
+        {theme === "dark" ? (
+          <IconWrapper data-test="to_light_mode" higthLite onClick={this.switchTheme}>
+            <i className="material-icons">light_mode</i>
+          </IconWrapper>
+        ) : (
+          <IconWrapper data-test="to_dark_mode" higthLite onClick={this.switchTheme}>
+            <i className="material-icons">dark_mode</i>
+          </IconWrapper>
+        )}
       </ControlPanelWrapper>
     );
   }

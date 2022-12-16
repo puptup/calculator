@@ -37,15 +37,15 @@ class History extends React.PureComponent<PropsFromRedux> {
   render() {
     const { history, clearHistory } = this.props;
     return (
-      <HistoryWrapper>
+      <HistoryWrapper data-test="history">
         <HistoryHead>
           <HistoryTitle>History</HistoryTitle>
-          <Button size={1.5} type="button" onClick={clearHistory}>
+          <Button data-test="clear_history" size={1.5} type="button" onClick={clearHistory}>
             Clear all
           </Button>
         </HistoryHead>
         {history.length ? (
-          <List>
+          <List data-test="history_list">
             {history.map(({ value, formula }, index) => (
               <ListElement key={index} onClick={this.setValueToScreen(value)}>
                 {index + 1}. {formula} = {value}

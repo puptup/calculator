@@ -17,7 +17,7 @@ export default createBrowserRouter([
         element: <CalculatorFC />,
       },
       {
-        path: "/CC",
+        path: "/cc",
         element: <CalculatorCC />,
       },
     ],

@@ -22,12 +22,18 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ showHistory, toggleShowHist
 
   return (
     <ControlPanelWrapper>
-      <IconWrapper higthLite={showHistory} onClick={toggleShowHistory}>
+      <IconWrapper data-test="show_history" higthLite={showHistory} onClick={toggleShowHistory}>
         <i className="material-icons">history</i>
       </IconWrapper>
-      <IconWrapper higthLite onClick={switchTheme}>
-        <i className="material-icons">dark_mode</i>
-      </IconWrapper>
+      {theme === "dark" ? (
+        <IconWrapper data-test="to_light_mode" higthLite onClick={switchTheme}>
+          <i className="material-icons">light_mode</i>
+        </IconWrapper>
+      ) : (
+        <IconWrapper data-test="to_dark_mode" higthLite onClick={switchTheme}>
+          <i className="material-icons">dark_mode</i>
+        </IconWrapper>
+      )}
     </ControlPanelWrapper>
   );
 };
