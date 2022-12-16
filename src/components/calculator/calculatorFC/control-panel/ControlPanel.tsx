@@ -1,7 +1,7 @@
+import { useAppDispatch, useAppSelector } from "@hooks";
+import { setTheme } from "@store/reducers/theme";
 import React from "react";
 
-import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { setTheme } from "../../../../store/reducers/theme";
 import { ControlPanelWrapper, IconWrapper } from "../../styles/controlPanel";
 
 interface ControlPanelProps {

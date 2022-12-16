@@ -1,4 +1,5 @@
-import { CALCULATION_ERROR, DEFAULT_CALCULATOR_VALUE, Operation } from "../../../constants";
+import { CALCULATION_ERROR, DEFAULT_CALCULATOR_VALUE, Operation } from "@constants";
+
 import { calculateExpression } from "../../calculator/calculator";
 import {
   getNumberInBrackets,

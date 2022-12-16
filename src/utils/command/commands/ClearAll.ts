@@ -1,4 +1,5 @@
-import { DEFAULT_CALCULATOR_VALUE } from "../../../constants";
+import { DEFAULT_CALCULATOR_VALUE } from "@constants";
+
 import { Command } from "./Command";
 
 export default class ClearAll extends Command {

@@ -1,6 +1,6 @@
+import { useAppSelector } from "@hooks";
 import React from "react";
 
-import { useAppSelector } from "../../../../hooks";
 import { DisplayWrapper, FormulaText, ValueText } from "../../styles/display";
 
 const Display = () => {

@@ -1,6 +1,7 @@
 /* eslint-disable no-new */
-import { Operation } from "../../constants";
-import { CalculatorState } from "../../types";
+import { Operation } from "@constants";
+import { CalculatorState } from "@types";
+
 import {
   AddAction,
   ChangeSign,

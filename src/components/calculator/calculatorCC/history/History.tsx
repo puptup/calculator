@@ -2,12 +2,12 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable react/no-array-index-key */
+import { Operation } from "@constants";
+import { RootState } from "@store";
+import { calculatorAction, setValue } from "@store/reducers/calculator";
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
 
-import { Operation } from "../../../../constants";
-import { RootState } from "../../../../store";
-import { calculatorAction, setValue } from "../../../../store/reducers/calculator";
 import {
   Button,
   HistoryHead,

@@ -24,6 +24,16 @@ module.exports = {
   },
   resolve: {
     extensions: ["*",".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      '@constants': path.resolve(__dirname, './src/constants'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@types': path.resolve(__dirname, './src/types'),
+      '@theme': path.resolve(__dirname, './src/theme'),
+      '@store': path.resolve(__dirname, './src/store'),
+      '@routes': path.resolve(__dirname, './src/routes'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@components': path.resolve(__dirname, './src/components'),
+    },
   },
   devServer: {
     static: {
@@ -31,7 +41,6 @@ module.exports = {
     },
     historyApiFallback: true,
   },
-
   plugins: [
     new EslintWebpackPlugin({
       extensions: ["tsx", 'js'],

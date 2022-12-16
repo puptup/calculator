@@ -1,4 +1,5 @@
-import { DEFAULT_CALCULATOR_VALUE, Operation } from "../../../constants";
+import { DEFAULT_CALCULATOR_VALUE, Operation } from "@constants";
+
 import { Command } from "./Command";
 
 export default class ClearEntry extends Command {

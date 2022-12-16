@@ -1,4 +1,5 @@
-import { DEFAULT_CALCULATOR_VALUE } from "../../../constants";
+import { DEFAULT_CALCULATOR_VALUE } from "@constants";
+
 import { isNumber } from "../../calculator/validator";
 import { Command } from "./Command";
 

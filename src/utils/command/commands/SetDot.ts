@@ -1,4 +1,5 @@
-import { Operation } from "../../../constants";
+import { Operation } from "@constants";
+
 import { Command } from "./Command";
 
 export default class SetDot extends Command {

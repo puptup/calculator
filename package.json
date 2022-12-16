@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Hi, that's my calculator.",
   "main": "index.js",
+  "browser": {
+    "[module-name]": false   
+  },
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@babel/plugin-proposal-class-properties": "^7.18.6",

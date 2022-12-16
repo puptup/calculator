@@ -1,4 +1,5 @@
-import { Operation } from "../../../constants";
+import { Operation } from "@constants";
+
 import { getNumberInBrackets, isNumber } from "../../calculator/validator";
 import { Command } from "./Command";
 

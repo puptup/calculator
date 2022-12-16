@@ -1,9 +1,9 @@
+import { useAppSelector } from "@hooks";
+import { themeByType } from "@theme";
 import React from "react";
 import { Outlet } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
-import { useAppSelector } from "../../hooks";
-import { themeByType } from "../../theme";
 import Header from "../header";
 import { MainWrapper } from "./styles";
 

@@ -1,6 +1,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-syntax */
-import { Operation } from "../../constants";
+import { Operation } from "@constants";
 
 const Add = (a: number, b: number) => a + b;
 const Sub = (a: number, b: number) => a - b;
