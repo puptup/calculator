@@ -1,8 +1,9 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { Operation } from "../../constants";
-import CalculatorInvoker from "../../utils/command/invoker";
 import { CalculatorState } from "../../types";
+import CalculatorInvoker from "../../utils/command/invoker";
 
 const initialState: CalculatorState = {
   value: "0",

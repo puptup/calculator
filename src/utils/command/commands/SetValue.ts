@@ -1,4 +1,4 @@
-import { DEFAULT_CALCULATOR_VALUE, Operation } from "../../../constants";
+import { Operation } from "../../../constants";
 import { isNumber } from "../../calculator/validator";
 import { Command } from "./Command";
 

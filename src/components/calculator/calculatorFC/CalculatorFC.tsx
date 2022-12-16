@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+
 import { CalculatorWrapper, MainScreen } from "../styles/calculator";
 import ControlPanel from "./control-panel";
 import Display from "./display";
-
 import History from "./history";
 import KeyPad from "./keypad";
 

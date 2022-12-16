@@ -1,4 +1,5 @@
 import React from "react";
+
 import { CalculatorWrapper, MainScreen } from "../styles/calculator";
 import ControlPanel from "./control-panel";
 import Display from "./display";

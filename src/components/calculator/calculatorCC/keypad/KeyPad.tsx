@@ -2,6 +2,7 @@
 /* eslint-disable class-methods-use-this */
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
+
 import { calculatorTable, largeKeys, Operation } from "../../../../constants";
 import { calculatorAction } from "../../../../store/reducers/calculator";
 import { Button, KeyPadWrapper, KeysRow } from "../../styles/keyPad";

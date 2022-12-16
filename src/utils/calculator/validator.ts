@@ -1,4 +1,4 @@
-import { Operation, CALCULATION_ERROR } from "../../constants/index";
+import { CALCULATION_ERROR, Operation } from "../../constants/index";
 
 export const validateCalculationString = (formula: string[]): string[] => {
   const filteredFormula = formula.filter((element) => element !== "");

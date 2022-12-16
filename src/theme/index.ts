@@ -1,5 +1,5 @@
 import { GlobalStyle } from "./globalStyle";
-import { lighTheme, darkTheme } from "./themes";
+import { darkTheme, lighTheme } from "./themes";
 
 const themeByType = {
   dark: darkTheme,

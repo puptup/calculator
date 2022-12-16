@@ -1,5 +1,6 @@
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
+
 import { RootState } from "../../../../store";
 import { DisplayWrapper, FormulaText, ValueText } from "../../styles/display";
 

@@ -1,19 +1,18 @@
 /* eslint-disable no-new */
 import { Operation } from "../../constants";
 import { CalculatorState } from "../../types";
-
 import {
-  Command as CommandClass,
-  ClearEntry,
-  SetValue,
-  ClearAll,
   AddAction,
-  GetValue,
-  ClearHistory,
   ChangeSign,
-  SetRigthBracket,
-  SetLeftBracket,
+  ClearAll,
+  ClearEntry,
+  ClearHistory,
+  Command as CommandClass,
+  GetValue,
   SetDot,
+  SetLeftBracket,
+  SetRigthBracket,
+  SetValue,
 } from "./commands";
 
 const CommandByOperation = {

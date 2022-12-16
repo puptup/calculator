@@ -18,8 +18,10 @@ module.exports = {
     project: ["./tsconfig.json"],
     sourceType: 'module'
   },
-  plugins: ["react", "react-hooks", "prettier"],
+  plugins: ["react", "react-hooks", "prettier", "simple-import-sort"],
   rules: {
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
     "semi": ["warn", "always"],
     "quotes": ["warn", "double", { "avoidEscape": true }],
     "react/react-in-jsx-scope": 0,
