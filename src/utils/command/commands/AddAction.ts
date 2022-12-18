@@ -1,25 +1,36 @@
-import { Operation } from "@constants/index";
+import { DEFAULT_CALCULATOR_VALUE, Operation } from "@constants/index";
+import { isNumber } from "@utils/calculator/validator";
 
-import { getNumberInBrackets, isNumber } from "../../calculator/validator";
+import CalculateValue from "./CalculateValue";
 import { Command } from "./Command";
 
 export default class AddAction extends Command {
   execute(payload: Operation): void {
     const { formula, value } = this.state;
-    if (isNumber(value)) {
-      if (Number(value) >= 0) {
-        this.state.formula = [...formula, value];
-      } else {
-        this.state.formula = [...formula, ...getNumberInBrackets(value)];
+
+    if (formula.length === 0) {
+      if (value !== DEFAULT_CALCULATOR_VALUE) {
+        this.state.formula = [value, payload];
       }
+      return;
     }
 
-    this.state.value = payload;
+    const command = new CalculateValue(this.state);
+    if (command.canExecute()) {
+      command.execute();
+    }
+
+    const lastElement = formula.slice(-1)[0];
+    if (isNumber(lastElement) || lastElement === Operation.RigthBracket) {
+      this.state.formula = [...formula, payload];
+    } else {
+      this.state.formula = [...formula.slice(0, -1), payload];
+    }
   }
 
   canExecute(): boolean {
-    const { formula, value } = this.state;
-    if (formula.slice(-1)[0] === Operation.RigthBracket) return true;
-    return !!value;
+    const { formula } = this.state;
+    const lastElement = formula.slice(-1)[0];
+    return lastElement !== Operation.LeftBracket;
   }
 }

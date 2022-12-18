@@ -1,56 +1,41 @@
-import { CALCULATION_ERROR, DEFAULT_CALCULATOR_VALUE, Operation } from "@constants";
+import { Operation } from "@constants";
 
-import { calculateExpression } from "../../calculator/calculator";
-import {
-  getNumberInBrackets,
-  hasError,
-  isNumber,
-  validateCalculationString,
-} from "../../calculator/validator";
+import { isNumber, validateCalculationString } from "../../calculator/validator";
+import CalculateValue from "./CalculateValue";
 import { Command } from "./Command";
 
 export default class GetValue extends Command {
   execute(): void {
-    let formula: string[];
-    if (isNumber(this.state.value)) {
-      if (Number(this.state.value) >= 0) {
-        formula = [...this.state.formula, this.state.value];
-      } else {
-        formula = [...this.state.formula, ...getNumberInBrackets(this.state.value)];
-      }
-    } else {
-      formula = [...this.state.formula];
-    }
-    const validatedFormula = validateCalculationString(formula);
-    if (hasError(validatedFormula)) {
-      this.state.value = CALCULATION_ERROR;
-    } else {
-      try {
-        const value = calculateExpression(validatedFormula);
-        this.state.value = value;
-      } catch (e) {
-        this.state.value = CALCULATION_ERROR;
-      }
-    }
-    const jsonNewFormula = JSON.stringify(validatedFormula);
-    const jsonOldFormula = JSON.stringify(this.state.history.slice(-1)[0]?.formula);
+    const { formula } = this.state;
 
-    if (jsonNewFormula === jsonOldFormula) {
+    if (!formula.length) {
+      this.state.value = "0";
       return;
     }
 
-    this.state.history = [
-      ...this.state.history,
-      { formula: validatedFormula, value: this.state.value },
-    ];
-    this.state.formula = [];
+    if (!isNumber(formula.slice(-1)[0])) {
+      this.state.formula = [...formula.slice(0, -1)];
+    }
+
+    const command = new CalculateValue(this.state);
+    if (command.canExecute()) {
+      command.execute();
+      const validatedFormula = validateCalculationString(formula);
+      const jsonNewFormula = JSON.stringify(validatedFormula);
+      const jsonOldFormula = JSON.stringify(this.state.history.slice(-1)[0]?.formula);
+
+      if (jsonNewFormula !== jsonOldFormula) {
+        this.state.history = [
+          ...this.state.history,
+          { formula: validatedFormula, value: this.state.value },
+        ];
+      }
+
+      this.state.formula = [];
+    }
   }
 
   canExecute(): boolean {
-    return (
-      this.state.formula.length > 0 &&
-      this.state.formula.slice(-1)[0] !== Operation.LeftBracket &&
-      this.state.value !== DEFAULT_CALCULATOR_VALUE
-    );
+    return this.state.formula.slice(-1)[0] !== Operation.LeftBracket;
   }
 }

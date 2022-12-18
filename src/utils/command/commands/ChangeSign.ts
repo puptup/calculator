@@ -1,16 +1,31 @@
-import { DEFAULT_CALCULATOR_VALUE } from "@constants";
+import { Operation } from "@constants/index";
+import { isNumber } from "@utils/calculator/validator";
 
-import { isNumber } from "../../calculator/validator";
 import { Command } from "./Command";
 
 export default class ChangeSign extends Command {
   execute(): void {
-    this.state.value =
-      this.state.value[0] === "-" ? this.state.value.slice(1) : `-${this.state.value}`;
+    const { formula } = this.state;
+    const preLastElement = formula.slice(-2)[0];
+    if (preLastElement === Operation.Add) {
+      this.state.formula = [...formula.slice(0, -2), Operation.Subtract, ...formula.slice(-1)];
+      return;
+    }
+    if (preLastElement === Operation.Subtract) {
+      this.state.formula = [...formula.slice(0, -2), Operation.Add, ...formula.slice(-1)];
+      return;
+    }
+
+    const lastElement = formula.slice(-1)[0];
+    this.state.formula = [
+      ...formula.slice(0, -1),
+      Number(lastElement) > 0 ? `-${lastElement}` : lastElement.slice(1),
+    ];
   }
 
   canExecute(): boolean {
-    const { value } = this.state;
-    return isNumber(value) && value !== DEFAULT_CALCULATOR_VALUE;
+    const { formula } = this.state;
+    const lastElement = formula.slice(-1)[0];
+    return isNumber(lastElement);
   }
 }

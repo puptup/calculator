@@ -6,6 +6,7 @@ import CalculatorInvoker from "@utils/command/invoker";
 
 const initialState: CalculatorState = {
   value: "0",
+  intermediateResult: "",
   formula: [],
   history: [],
 };
@@ -15,7 +16,6 @@ const calculatorSlice = createSlice({
   initialState,
   reducers: {
     calculatorAction(state, action: PayloadAction<Operation | number>) {
-      console.log("tests");
       CalculatorInvoker.executeCommandBySign(state, action.payload);
     },
     setValue(state, action: PayloadAction<string>) {

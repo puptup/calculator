@@ -12,8 +12,8 @@ import {
   GetValue,
   SetDot,
   SetLeftBracket,
+  SetNumber,
   SetRigthBracket,
-  SetValue,
 } from "./commands";
 
 const CommandByOperation = {
@@ -30,7 +30,7 @@ const CommandByOperation = {
   [Operation.LeftBracket]: SetLeftBracket,
   [Operation.RigthBracket]: SetRigthBracket,
   [Operation.Dot]: SetDot,
-  number: SetValue,
+  number: SetNumber,
 };
 
 type OperationKey = keyof typeof CommandByOperation;

@@ -10,7 +10,7 @@ const darkTheme = {
     },
     text: {
       primary: "white",
-      secondary: "#6f778d",
+      secondary: "#c6d0ea",
     },
   },
 };
@@ -27,7 +27,7 @@ const lighTheme = {
     },
     text: {
       primary: "black",
-      secondary: "#6f778d",
+      secondary: "#c6d0ea",
     },
   },
 };

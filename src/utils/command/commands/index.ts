@@ -7,8 +7,8 @@ import { Command } from "./Command";
 import GetValue from "./GetValue";
 import SetDot from "./SetDot";
 import SetLeftBracket from "./SetLeftBracket";
+import SetNumber from "./SetNumber";
 import SetRigthBracket from "./SetRightBracket";
-import SetValue from "./SetValue";
 
 export {
   AddAction,
@@ -20,6 +20,6 @@ export {
   GetValue,
   SetDot,
   SetLeftBracket,
+  SetNumber,
   SetRigthBracket,
-  SetValue,
 };

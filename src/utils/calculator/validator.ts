@@ -1,10 +1,14 @@
 import { CALCULATION_ERROR, Operation } from "@constants/index";
 
 export const validateCalculationString = (formula: string[]): string[] => {
-  const filteredFormula = formula.filter((element) => element !== "");
+  let filteredFormula = formula.filter((element) => element !== "");
+  if (!Number(filteredFormula.slice(-1)[0])) {
+    filteredFormula = filteredFormula.slice(0, -1);
+  }
   const leftBracketsCount = filteredFormula.filter((element) => element === "(").length;
   const rightBracketsCount = filteredFormula.filter((element) => element === ")").length;
   const difference = leftBracketsCount - rightBracketsCount;
+
   if (difference > 0) {
     return [...filteredFormula, ...Operation.RigthBracket.repeat(difference).split("")];
   }
