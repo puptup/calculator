@@ -5,9 +5,6 @@
 import { Operation } from "@constants";
 import { RootState } from "@store";
 import { calculatorAction, setValue } from "@store/reducers/calculator";
-import React from "react";
-import { connect, ConnectedProps } from "react-redux";
-
 import {
   Button,
   HistoryHead,
@@ -15,7 +12,9 @@ import {
   HistoryWrapper,
   List,
   ListElement,
-} from "../../styles/history";
+} from "@styles/history";
+import React from "react";
+import { connect, ConnectedProps } from "react-redux";
 
 const mapState = (state: RootState) => ({
   history: state.calculator.history,

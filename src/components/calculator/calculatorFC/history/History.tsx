@@ -3,8 +3,6 @@
 import { Operation } from "@constants";
 import { useAppDispatch, useAppSelector } from "@hooks";
 import { calculatorAction, setValue } from "@store/reducers/calculator";
-import React from "react";
-
 import {
   Button,
   HistoryHead,
@@ -12,7 +10,8 @@ import {
   HistoryWrapper,
   List,
   ListElement,
-} from "../../styles/history";
+} from "@styles/history";
+import React from "react";
 
 const History = () => {
   const { history } = useAppSelector((state) => state.calculator);

@@ -1,9 +1,8 @@
 import { RootState } from "@store";
 import { setTheme } from "@store/reducers/theme";
+import { ControlPanelWrapper, IconWrapper } from "@styles/controlPanel";
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
-
-import { ControlPanelWrapper, IconWrapper } from "../../styles/controlPanel";
 
 const mapState = (state: RootState) => ({
   theme: state.theme.actual,

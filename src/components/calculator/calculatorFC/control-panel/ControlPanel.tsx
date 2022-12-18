@@ -1,8 +1,7 @@
 import { useAppDispatch, useAppSelector } from "@hooks";
 import { setTheme } from "@store/reducers/theme";
+import { ControlPanelWrapper, IconWrapper } from "@styles/controlPanel";
 import React from "react";
-
-import { ControlPanelWrapper, IconWrapper } from "../../styles/controlPanel";
 
 interface ControlPanelProps {
   showHistory: boolean;

@@ -1,6 +1,5 @@
+import { HeaderWrapper, Link, LinksContainer, LinkWrapper } from "@styles/header";
 import * as React from "react";
-
-import { HeaderWrapper, Link, LinksContainer, LinkWrapper } from "./styles";
 
 const Header = () => {
   return (

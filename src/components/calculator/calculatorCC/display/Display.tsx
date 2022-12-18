@@ -1,8 +1,7 @@
 import { RootState } from "@store";
+import { DisplayWrapper, FormulaText, ValueText } from "@styles/display";
 import React from "react";
 import { connect, ConnectedProps } from "react-redux";
-
-import { DisplayWrapper, FormulaText, ValueText } from "../../styles/display";
 
 const mapState = (state: RootState) => ({
   formula: state.calculator.formula,

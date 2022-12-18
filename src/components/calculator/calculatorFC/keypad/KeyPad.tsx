@@ -1,9 +1,8 @@
 import { calculatorTable, largeKeys, Operation } from "@constants";
 import { useAppDispatch } from "@hooks";
 import { calculatorAction } from "@store/reducers/calculator";
+import { Button, KeyPadWrapper, KeysRow } from "@styles/keyPad";
 import React from "react";
-
-import { Button, KeyPadWrapper, KeysRow } from "../../styles/keyPad";
 
 const KeyPad = () => {
   const dispatch = useAppDispatch();

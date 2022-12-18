@@ -1,7 +1,6 @@
 import { useAppSelector } from "@hooks";
+import { DisplayWrapper, FormulaText, ValueText } from "@styles/display";
 import React from "react";
-
-import { DisplayWrapper, FormulaText, ValueText } from "../../styles/display";
 
 const Display = () => {
   const { formula, value } = useAppSelector((state) => state.calculator);
