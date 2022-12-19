@@ -1,3 +1,1 @@
-import CalculatorFC from "./CalculatorFC";
-
-export default CalculatorFC;
+export { default } from "./CalculatorFC";

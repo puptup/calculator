@@ -40,6 +40,7 @@ module.exports = {
     "@typescript-eslint/lines-between-class-members": "off",
     "max-classes-per-file": "off",
     "react/no-array-index-key": 'off',
+    "no-restricted-exports": 'off',
     "prettier/prettier": [
       "error",
       {

@@ -46,7 +46,6 @@ const calculateAction = (expression: string[]): string => {
 };
 
 export const calculateExpression = (formula: string[]) => {
-  formula = [...formula];
   while (formula.includes(Operation.RigthBracket)) {
     let indexOfRightBracket = -1;
     let indexOfLeftBracket = -1;
@@ -58,6 +57,7 @@ export const calculateExpression = (formula: string[]) => {
         break;
       }
     }
+
     const action = formula.splice(indexOfLeftBracket, indexOfRightBracket - indexOfLeftBracket + 1);
     const actionResult = calculateAction(action.slice(1, -1));
     formula.splice(indexOfLeftBracket, 0, actionResult);

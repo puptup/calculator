@@ -1,9 +1,9 @@
-import { GlobalStyle } from "./globalStyle";
-import { darkTheme, lighTheme } from "./themes";
+import GlobalStyle from "./globalStyle";
+import themes from "./themes";
 
 const themeByType = {
-  dark: darkTheme,
-  ligth: lighTheme,
+  dark: themes.darkTheme,
+  ligth: themes.lighTheme,
 };
 
 export type ThemeType = keyof typeof themeByType;

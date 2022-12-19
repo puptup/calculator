@@ -32,4 +32,4 @@ const lighTheme = {
   },
 };
 
-export { darkTheme, lighTheme };
+export default { darkTheme, lighTheme };
