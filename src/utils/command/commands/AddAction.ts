@@ -6,6 +6,11 @@ import { Command } from "./Command";
 
 export default class AddAction extends Command {
   execute(payload: Operation): void {
+    const command = new CalculateValue(this.state);
+    if (command.canExecute(true)) {
+      command.execute();
+    }
+
     const { formula, value } = this.state;
 
     if (formula.length === 0) {
@@ -13,11 +18,6 @@ export default class AddAction extends Command {
         this.state.formula = [value, payload];
       }
       return;
-    }
-
-    const command = new CalculateValue(this.state);
-    if (command.canExecute()) {
-      command.execute();
     }
 
     const lastElement = formula.slice(-1)[0];

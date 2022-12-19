@@ -27,7 +27,7 @@ const lighTheme = {
     },
     text: {
       primary: "black",
-      secondary: "#c6d0ea",
+      secondary: "#363942",
     },
   },
 };

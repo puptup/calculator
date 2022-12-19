@@ -18,7 +18,6 @@ export const Button = styled.button<{ size: number }>`
   border-radius: 15px;
   border: 0;
   color: ${({ theme }) => theme.palette.text.primary};
-  transition: all 0.2s linear;
   &:hover {
     background-color: ${({ theme }) => theme.palette.button.secondary};
   }

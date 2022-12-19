@@ -15,6 +15,9 @@ export default class SetRigthBracket extends Command {
     const lastElement = formula.slice(-1)[0];
     const leftBracketsCount = formula.filter((element) => element === "(").length;
     const rightBracketsCount = formula.filter((element) => element === ")").length;
-    return rightBracketsCount < leftBracketsCount && isNumber(lastElement);
+    return (
+      rightBracketsCount < leftBracketsCount &&
+      (isNumber(lastElement) || lastElement === Operation.RigthBracket)
+    );
   }
 }
