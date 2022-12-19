@@ -4,17 +4,12 @@ import { calculatorTable, largeKeys, Operation } from "@constants";
 import { calculatorAction } from "@store/reducers/calculator";
 import { Button, KeyPadWrapper, KeysRow } from "@styles/keyPad";
 import React from "react";
-import { connect, ConnectedProps } from "react-redux";
+import { connect } from "react-redux";
 
-const mapDispatch = {
-  calculatorAction,
-};
-
-const connector = connect(null, mapDispatch);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-class KeyPad extends React.PureComponent<PropsFromRedux> {
+interface KeyPadProps {
+  calculatorAction: (sign: Operation | number) => void;
+}
+class KeyPad extends React.PureComponent<KeyPadProps> {
   handleAction = (sign: Operation | number) => {
     this.props.calculatorAction(sign);
   };
@@ -41,4 +36,8 @@ class KeyPad extends React.PureComponent<PropsFromRedux> {
   }
 }
 
-export default connector(KeyPad);
+const mapDispatch = {
+  calculatorAction,
+};
+
+export default connect(null, mapDispatch)(KeyPad);

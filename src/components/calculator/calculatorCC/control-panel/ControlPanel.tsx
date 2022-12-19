@@ -2,34 +2,21 @@ import { RootState } from "@store";
 import { setTheme } from "@store/reducers/theme";
 import { ControlPanelWrapper, IconWrapper } from "@styles/controlPanel";
 import React from "react";
-import { connect, ConnectedProps } from "react-redux";
+import { connect } from "react-redux";
 
-const mapState = (state: RootState) => ({
-  theme: state.theme.actual,
-});
-
-const mapDispatch = {
-  setNewTheme: setTheme,
-};
-
-const connector = connect(mapState, mapDispatch);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-interface Props extends PropsFromRedux {
+interface ControPanelProps {
+  theme: string;
+  setNewTheme: (theme: "dark" | "ligth") => void;
   showHistory: boolean;
   toggleShowHistory: () => void;
 }
 
-class ControlPanel extends React.PureComponent<Props> {
+class ControlPanel extends React.PureComponent<ControPanelProps> {
   switchTheme = () => {
     const { theme, setNewTheme } = this.props;
-    if (theme === "dark") {
-      setNewTheme("ligth");
-    } else {
-      setNewTheme("dark");
-    }
+    setNewTheme(theme === "dark" ? "ligth" : "dark");
   };
+
   render() {
     const { theme, showHistory, toggleShowHistory } = this.props;
     return (
@@ -51,4 +38,12 @@ class ControlPanel extends React.PureComponent<Props> {
   }
 }
 
-export default connector(ControlPanel);
+const mapState = (state: RootState) => ({
+  theme: state.theme.actual,
+});
+
+const mapDispatch = {
+  setNewTheme: setTheme,
+};
+
+export default connect(mapState, mapDispatch)(ControlPanel);

@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "@hooks";
+import { RootState } from "@store";
 import { setTheme } from "@store/reducers/theme";
 import { ControlPanelWrapper, IconWrapper } from "@styles/controlPanel";
 import React from "react";
@@ -8,16 +9,14 @@ interface ControlPanelProps {
   toggleShowHistory: () => void;
 }
 
+const mapState = (state: RootState) => state.theme.actual;
+
 const ControlPanel: React.FC<ControlPanelProps> = ({ showHistory, toggleShowHistory }) => {
   const dispatch = useAppDispatch();
-  const theme = useAppSelector((state) => state.theme.actual);
+  const theme = useAppSelector(mapState);
 
   const switchTheme = () => {
-    if (theme === "dark") {
-      dispatch(setTheme("ligth"));
-    } else {
-      dispatch(setTheme("dark"));
-    }
+    dispatch(setTheme(theme === "dark" ? "ligth" : "dark"));
   };
 
   return (

@@ -2,6 +2,7 @@
 /* eslint-disable react/no-array-index-key */
 import { Operation } from "@constants";
 import { useAppDispatch, useAppSelector } from "@hooks";
+import { RootState } from "@store";
 import { calculatorAction, setValue } from "@store/reducers/calculator";
 import {
   Button,
@@ -13,8 +14,10 @@ import {
 } from "@styles/history";
 import React from "react";
 
+const mapState = (state: RootState) => state.calculator.history;
+
 const History = () => {
-  const { history } = useAppSelector((state) => state.calculator);
+  const history = useAppSelector(mapState);
   const dispatch = useAppDispatch();
 
   const clearHistory = () => {

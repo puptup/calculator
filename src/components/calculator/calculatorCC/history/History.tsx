@@ -14,22 +14,18 @@ import {
   ListElement,
 } from "@styles/history";
 import React from "react";
-import { connect, ConnectedProps } from "react-redux";
+import { connect } from "react-redux";
 
-const mapState = (state: RootState) => ({
-  history: state.calculator.history,
-});
+interface HistoryProps {
+  history: {
+    value: string;
+    formula: string[];
+  }[];
+  setValue: (value: string) => void;
+  clearHistory: () => void;
+}
 
-const mapDispatch = {
-  clearHistory: () => calculatorAction(Operation.ClearHistory),
-  setValue,
-};
-
-const connector = connect(mapState, mapDispatch);
-
-type PropsFromRedux = ConnectedProps<typeof connector>;
-
-class History extends React.PureComponent<PropsFromRedux> {
+class History extends React.PureComponent<HistoryProps> {
   setValueToScreen = (value: string) => () => {
     this.props.setValue(value);
   };
@@ -60,4 +56,13 @@ class History extends React.PureComponent<PropsFromRedux> {
   }
 }
 
-export default connector(History);
+const mapState = (state: RootState) => ({
+  history: state.calculator.history,
+});
+
+const mapDispatch = {
+  clearHistory: () => calculatorAction(Operation.ClearHistory),
+  setValue,
+};
+
+export default connect(mapState, mapDispatch)(History);

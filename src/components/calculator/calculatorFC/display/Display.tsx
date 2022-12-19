@@ -1,9 +1,12 @@
 import { useAppSelector } from "@hooks";
+import { RootState } from "@store";
 import { DisplayWrapper, FormulaText, ValueText } from "@styles/display";
 import React from "react";
 
+const mapState = (state: RootState) => state.calculator;
+
 const Display = () => {
-  const { formula, value } = useAppSelector((state) => state.calculator);
+  const { formula, value } = useAppSelector(mapState);
 
   return (
     <DisplayWrapper>
