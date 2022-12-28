@@ -19,7 +19,6 @@ export default class CalculateValue extends Command {
     } else {
       try {
         this.state.value = calculateExpression(validatedFormula);
-        this.state.formula = [this.state.value];
       } catch (e) {
         this.state.value = CALCULATION_ERROR;
       }

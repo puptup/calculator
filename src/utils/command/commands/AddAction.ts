@@ -14,8 +14,8 @@ export default class AddAction extends Command {
     const { formula, value } = this.state;
 
     if (formula.length === 0) {
-      if (value !== DEFAULT_CALCULATOR_VALUE) {
-        this.state.formula = [value, payload];
+      if (value !== "") {
+        this.state.formula = [...formula, payload];
       }
       return;
     }
