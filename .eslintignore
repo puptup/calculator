@@ -1,0 +1,4 @@
+**/*.js
+cypress.config.ts
+node_modules
+cypress

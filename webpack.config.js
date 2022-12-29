@@ -3,20 +3,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const EslintWebpackPlugin = require("eslint-webpack-plugin");
 
 module.exports = {
-  entry: path.join(__dirname, "src", "index.js"),
+  entry: path.join(__dirname, "src", "index.tsx"),
   output: {
     path: path.resolve(__dirname, "dist"),
   },
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(ts|tsx)$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
-          options: {
-            presets: ["@babel/preset-env", "@babel/preset-react"],
-          },
         },
       },
       {
@@ -26,12 +23,28 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"],
+    extensions: ["*",".js", ".jsx", ".ts", ".tsx"],
+    alias: {
+      '@constants': path.resolve(__dirname, './src/constants'),
+      '@utils': path.resolve(__dirname, './src/utils'),
+      '@types': path.resolve(__dirname, './src/types'),
+      '@theme': path.resolve(__dirname, './src/theme'),
+      '@store': path.resolve(__dirname, './src/store'),
+      '@routes': path.resolve(__dirname, './src/routes'),
+      '@hooks': path.resolve(__dirname, './src/hooks'),
+      '@styles': path.resolve(__dirname, './src/styles'),
+      '@components': path.resolve(__dirname, './src/components'),
+    },
   },
-
+  devServer: {
+    static: {
+        directory: path.join(__dirname, '/')
+    },
+    historyApiFallback: true,
+  },
   plugins: [
     new EslintWebpackPlugin({
-      extensions: ["js", "jsx"],
+      extensions: ["tsx", 'js'],
       emitWarning: false,
     }),
     new HtmlWebpackPlugin({
