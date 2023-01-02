@@ -12,8 +12,8 @@ export const DisplayWrapper = styled.div`
 `;
 
 export const FormulaText = styled.div`
-  font-size: 14px;
-  height: 14px;
+  font-size: 20px;
+  height: 20px;
   overflow: hidden;
   position: relative;
   color: ${({ theme }) => theme.palette.text.secondary};
@@ -21,6 +21,6 @@ export const FormulaText = styled.div`
 
 export const ValueText = styled.div`
   color: ${({ theme }) => theme.palette.text.primary};
-  font-size: 24px;
-  height: 24px;
+  font-size: 22px;
+  height: 22px;
 `;

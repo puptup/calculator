@@ -40,7 +40,7 @@ const History = () => {
         <List data-test="history_list">
           {history.map(({ value, formula }, index) => (
             <ListElement key={index} onClick={setValueToScreen(value)}>
-              {index + 1}. {formula.join("")} = {value}
+              {formula.join("")} = {value}
             </ListElement>
           ))}
         </List>
