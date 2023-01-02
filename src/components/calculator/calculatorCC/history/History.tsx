@@ -44,7 +44,7 @@ class History extends React.PureComponent<HistoryProps> {
           <List data-test="history_list">
             {history.map(({ value, formula }, index) => (
               <ListElement key={index} onClick={this.setValueToScreen(value)}>
-                {formula.join("")} = {value}
+                {index + 1}. {formula} = {value}
               </ListElement>
             ))}
           </List>
