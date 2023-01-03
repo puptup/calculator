@@ -1,6 +1,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-restricted-syntax */
 import { Operation } from "@constants";
+import { addToast } from "puptuptoasts";
 
 import { toFixedAndTrim } from "./validator";
 
@@ -37,6 +38,13 @@ const calculateAction = (expression: string[]): string => {
       const numB = expression[operatorIndex + 1];
       const operationResult = operatorToFunction[operator as OperatorKey](+numA, +numB);
       if (!Number.isFinite(operationResult) && operator === Operation.Divide) {
+        addToast({
+          type: "error",
+          description: "Devision by zero",
+          title: "Error",
+          position: "rightTop",
+          timeToDelete: 1500,
+        });
         throw new Error("Devision by zero");
       }
       expression.splice(operatorIndex - 1, 3, toFixedAndTrim(operationResult));

@@ -1,6 +1,7 @@
 import { RootState } from "@store";
 import { setTheme } from "@store/reducers/theme";
 import { ControlPanelWrapper, IconWrapper } from "@styles/controlPanel";
+import { addToast } from "puptuptoasts";
 import React from "react";
 import { connect } from "react-redux";
 
@@ -14,7 +15,14 @@ interface ControPanelProps {
 class ControlPanel extends React.PureComponent<ControPanelProps> {
   switchTheme = () => {
     const { theme, setNewTheme } = this.props;
-    setNewTheme(theme === "dark" ? "ligth" : "dark");
+    const newTheme = theme === "dark" ? "ligth" : "dark";
+    addToast({
+      position: "leftTop",
+      type: "info",
+      description: `was changed to ${newTheme}`,
+      title: "Theme",
+    });
+    setNewTheme(newTheme);
   };
 
   render() {

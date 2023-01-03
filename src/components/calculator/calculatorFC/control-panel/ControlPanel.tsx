@@ -2,6 +2,7 @@ import { useAppDispatch, useAppSelector } from "@hooks";
 import { RootState } from "@store";
 import { setTheme } from "@store/reducers/theme";
 import { ControlPanelWrapper, IconWrapper } from "@styles/controlPanel";
+import { addToast } from "puptuptoasts";
 import React from "react";
 
 interface ControlPanelProps {
@@ -16,7 +17,14 @@ const ControlPanel: React.FC<ControlPanelProps> = ({ showHistory, toggleShowHist
   const theme = useAppSelector(mapState);
 
   const switchTheme = () => {
-    dispatch(setTheme(theme === "dark" ? "ligth" : "dark"));
+    const newTheme = theme === "dark" ? "ligth" : "dark";
+    addToast({
+      position: "leftTop",
+      type: "info",
+      description: `was changed to ${newTheme}`,
+      title: "Theme",
+    });
+    dispatch(setTheme(newTheme));
   };
 
   return (

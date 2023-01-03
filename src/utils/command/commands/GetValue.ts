@@ -1,4 +1,5 @@
-import { Operation } from "@constants";
+import { CALCULATION_ERROR, Operation } from "@constants";
+import { addToast } from "puptuptoasts";
 
 import { isNumber, validateCalculationString } from "../../calculator/validator";
 import CalculateValue from "./CalculateValue";
@@ -9,7 +10,7 @@ export default class GetValue extends Command {
     const { formula } = this.state;
 
     if (!formula.length) {
-      this.state.value = "0";
+      this.state.value = "";
       return;
     }
 
@@ -32,6 +33,15 @@ export default class GetValue extends Command {
       }
 
       this.state.formula = [];
+
+      if (this.state.value !== CALCULATION_ERROR) {
+        addToast({
+          type: "success",
+          position: "rightTop",
+          title: "Success",
+          description: "operation completed successfully",
+        });
+      }
     }
   }
 

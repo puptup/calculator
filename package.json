@@ -4,7 +4,7 @@
   "description": "Hi, that's my calculator.",
   "main": "index.js",
   "browser": {
-    "[module-name]": false   
+    "[module-name]": false
   },
   "devDependencies": {
     "@babel/core": "^7.20.5",
@@ -63,6 +63,7 @@
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
     "@types/styled-components": "^5.1.26",
+    "puptuptoasts": "^0.0.14",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
