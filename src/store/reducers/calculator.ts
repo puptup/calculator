@@ -5,7 +5,7 @@ import { CalculatorState } from "@types";
 import CalculatorInvoker from "@utils/command/invoker";
 
 const initialState: CalculatorState = {
-  value: "0",
+  value: "",
   intermediateResult: "",
   formula: [],
   history: [],
