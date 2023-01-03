@@ -4986,15 +4986,11 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puptuptoasts@^0.0.14:
-  version "0.0.14"
-  resolved "https://registry.yarnpkg.com/puptuptoasts/-/puptuptoasts-0.0.14.tgz#de1525eb130b950e3b86b9ca48377ed5a82740d8"
-  integrity sha512-EJzFSt2HFMkMgV8jLZzGkGGMMqC2Q9oPfVd/fiiqfjwPWCflrkaX4StyQmPYQ+/p3bhp6iwJlTzYh8XtHZaeZw==
+puptuptoasts@^0.0.16:
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/puptuptoasts/-/puptuptoasts-0.0.16.tgz#feaac005b4a5f786de7f0832e4418029c3593a9d"
+  integrity sha512-XoRsGf8C8fhaHg4Mr58CD0PMJwVN/XWfGD78w7mLETlX1Ypcp2f0N85RUd3/vWT+xqsICeIwUBvyh7iqGG+gsA==
   dependencies:
-    react "^18.2.0"
-    react-dom "^18.2.0"
-    react-router-dom "^6.4.5"
-    styled-components "^5.3.6"
     uniqid "^5.4.0"
 
 qs@6.11.0:
